@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - AgriPredict</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Smooth fade-in effect */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Background image for hero */
+        .hero-bg {
+            background: url("{% static 'assets/farmbg.jpg' %}") center/cover no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-green-800 text-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-seedling text-3xl"></i>
+                <span class="text-2xl font-bold">AgriPredict</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-lg">
+                <a href="landingpage" class="hover:text-green-300">Home</a>
+                <a href="#" class="hover:text-green-300">About</a>
+                <a href="home" class="hover:text-green-300">Predict</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-2xl" id="menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+
+    <div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-green-900 text-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
+        <button class="absolute top-4 right-4 text-white text-2xl" id="close-sidebar">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mt-16 space-y-6 text-lg text-center">
+            <li><a href="landingpage" class="block py-2 hover:text-green-300">Home</a></li>
+            <li><a href="home" class="block py-2 hover:text-green-300">Predict</a></li>
+            <li><a href="#" class="block py-2 hover:text-green-300">About</a></li>
+        </ul>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-24 text-center fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold">Empowering Farmers with AI</h1>
+        <p class="text-lg mt-4 max-w-2xl mx-auto">Predict future crop prices with advanced AI models and stay ahead in agriculture.</p>
+        <a href="home" class="mt-6 inline-block bg-green-600 hover:bg-green-700 text-white text-lg px-6 py-3 rounded-lg shadow-md transition">
+            Start Predicting
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section class="container mx-auto px-6 py-16 text-center fade-in">
+        <h2 class="text-3xl font-bold text-green-800 mb-6">About AgriPredict</h2>
+        <p class="text-gray-700 max-w-3xl mx-auto">
+            AgriPredict is an AI-powered platform that helps farmers, traders, and policymakers make informed decisions by predicting crop prices based on market trends, climate, and historical data.
+        </p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container mx-auto px-6 py-16 fade-in">
+        <h2 class="text-3xl font-bold text-green-800 text-center mb-10">Key Features</h2>
+        <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> -->
+            <div class="p-6 bg-white shadow-lg rounded-lg text-center">
+                <i class="fas fa-chart-line text-green-600 text-4xl"></i>
+                <h3 class="text-xl font-semibold mt-4">Real-Time Price Prediction</h3>
+                <p class="text-gray-600 mt-2">Get accurate crop price forecasts based on AI-driven insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="bg-green-100 py-16 text-center fade-in">
+        <h2 class="text-3xl font-bold text-green-800 mb-6">Why Choose AgriPredict?</h2>
+        <p class="text-gray-700 max-w-3xl mx-auto mb-8">
+            We provide data-driven insights to help farmers make smarter decisions, reduce losses, and maximize profits.
+        </p>
+        <div class="md:grid-cols-1 lg:grid-cols-2 gap-3">
+            <div class="p-6 bg-white shadow-md rounded-lg">
+                <h3 class="text-xl font-semibold text-green-700">Good Accuracy</h3>
+                <p class="text-gray-600">Our AI models are trained on real market data for precise predictions.</p>
+            </div>
+            <div class="p-6 bg-white shadow-md rounded-lg">
+                <h3 class="text-xl font-semibold text-green-700">User-Friendly</h3>
+                <p class="text-gray-600">Simple and intuitive UI for farmers and traders.</p>
+            </div>
+            <div class="p-6 bg-white shadow-md rounded-lg">
+                <h3 class="text-xl font-semibold text-green-700">Free Access</h3>
+                <p class="text-gray-600">Access our platform at no cost and improve decision-making.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white text-center py-6 mt-16">
+        <p>&copy; 2025 AgriPredict. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const sidebar = document.getElementById('sidebar');
+        const closeSidebar = document.getElementById('close-sidebar');
+
+        menuButton.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    </script>
+
+
+
+</body>
+</html>
